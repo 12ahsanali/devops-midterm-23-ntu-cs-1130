@@ -1,9 +1,13 @@
 .PHONY: lint test package ci
 
-lint:
+node_modules: package.json package-lock.json
+	npm ci
+	@touch node_modules
+
+lint: node_modules
 	npm run lint
 
-test:
+test: node_modules
 	npm run test
 
 package: test
